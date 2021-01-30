@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1087203981629964741}
   - component: {fileID: 1087203981629964740}
-  - component: {fileID: 1087203981629964743}
   - component: {fileID: 1087203981629964738}
   - component: {fileID: 1087203981629964739}
   m_Layer: 0
@@ -77,14 +76,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1087203981629964743
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087203981629964742}
-  m_Enabled: 1
 --- !u!114 &1087203981629964738
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 2843213007760443392}
   - component: {fileID: 2843213007760443395}
   - component: {fileID: 2843213007760443394}
+  - component: {fileID: 7717723405641064200}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -243,6 +244,14 @@ MonoBehaviour:
   rotationRoot: {fileID: 2843213007227594128}
   movementSpeed: 4.67
   rotationSpeed: 10.52
+--- !u!81 &7717723405641064200
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2843213007760443397}
+  m_Enabled: 1
 --- !u!1 &2843213008178411136
 GameObject:
   m_ObjectHideFlags: 0
