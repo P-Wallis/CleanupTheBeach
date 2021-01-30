@@ -156,8 +156,27 @@ MonoBehaviour:
   beachObjectPrefab: {fileID: 5768197994423863069, guid: 77c064cb14f144ff9af4d0ff6882204f,
     type: 3}
   player: {fileID: 1257049236}
-  objectSpawnNumber: 40
-  radius: 20
+  objectSpawnNumber: 30
+  scatterRadius: 10
+  playerProximityRadius: 1
+  valuableObjects:
+  - {fileID: 11400000, guid: 8c9c86e3f4e4b432aa45fd5c8711645d, type: 2}
+  - {fileID: 11400000, guid: e7a192cfca82344ecb5570dd1a0c8924, type: 2}
+  - {fileID: 11400000, guid: 40a1d66dae6ef4477b1117da19cfbe5f, type: 2}
+  - {fileID: 11400000, guid: aa376bb3bb79f4db689a509dd3693999, type: 2}
+  - {fileID: 11400000, guid: 2b2a22abfd1474feca6e33df3e445cc5, type: 2}
+  nonValuableObjects:
+  - {fileID: 11400000, guid: 6d151450566854d97b93eb2c32dee97f, type: 2}
+  - {fileID: 11400000, guid: 756bd13d1fbba4220932773e286faeec, type: 2}
+  - {fileID: 11400000, guid: 8c8c5b01327c940f19e6603701062f4d, type: 2}
+  - {fileID: 11400000, guid: 40836f591d9dd40068a999017821c08c, type: 2}
+  - {fileID: 11400000, guid: 7a87029c3bc564237bc3823174c1ec24, type: 2}
+  - {fileID: 11400000, guid: 13be01ee72a904837b90c38e39d67368, type: 2}
+  - {fileID: 11400000, guid: 815c1fdc11fd24d13b474f1eac4ebc14, type: 2}
+  - {fileID: 11400000, guid: f8801ffa378ce46da87114f601740292, type: 2}
+  - {fileID: 11400000, guid: ce87a7982cc3548c18b2046316d0873a, type: 2}
+  - {fileID: 11400000, guid: a1927f2f056214862bba89f96cd2cacb, type: 2}
+  - {fileID: 11400000, guid: c2e0802d9aea64ac88ebe0349be7df82, type: 2}
 --- !u!4 &30910382
 Transform:
   m_ObjectHideFlags: 0
@@ -541,7 +560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1979308327
 Transform:
   m_ObjectHideFlags: 0
@@ -666,12 +685,12 @@ PrefabInstance:
     - target: {fileID: 1087203981629964741, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964741, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.2
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964741, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
