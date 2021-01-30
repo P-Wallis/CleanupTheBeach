@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     const string HORIZONTAL = "Horizontal";
     const string VERTICAL = "Vertical";
+    public Vector3 position { get { return transform.position; } }
 
     public Transform rotationRoot;
     [Range(0,15)]public float movementSpeed = 1;

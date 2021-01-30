@@ -8,7 +8,16 @@ public class BeachObject : MonoBehaviour
     private MaterialPropertyBlock materialProperties = null;
 
     public Vector3 position { get { return transform.position; } set { transform.position = value; } }
-    [HideInInspector]public int id;
+
+    private int id;
+    public int ID { get { return id; } }
+
+    private bool wasDugUp;
+    public bool WasDugUp { get { return wasDugUp; } }
+
+    private BeachObjectData data;
+    public BeachObjectData Data { get { return data; } }
+
 
     public void DebugSetColor(Color color)
     {
@@ -17,5 +26,26 @@ public class BeachObject : MonoBehaviour
 
         materialProperties.SetColor("_BaseColor", color);
         renderer.SetPropertyBlock(materialProperties);
+    }
+
+
+    public void Init(int id, BeachObjectData data)
+    {
+        this.id = id;
+        this.data = data;
+        wasDugUp = false;
+    }
+
+    public void DigUp()
+    {
+        if (wasDugUp)
+            return;
+
+        wasDugUp = true;
+
+        if (data != null)
+        {
+            Debug.Log("You Found " + data.objectName + "!");
+        }
     }
 }
