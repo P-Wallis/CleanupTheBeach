@@ -26,12 +26,14 @@ public class PlayerController : MonoBehaviour
     public bool IsDigging { get { return isDigging; } }
 
     private int terrainMask = 0;
+    private int waterMask = 0;
 
     private void Start()
     {
         walkingSound = AudioManager._.PlayLoopedAudio(SoundID.Walking_On_Sand, MixerID.SFX);
         walkingSound.volume = 0;
-        terrainMask = (1 << LayerMask.NameToLayer("Terrain"));
+        terrainMask = 1 << LayerMask.NameToLayer("Terrain");
+        waterMask = 1 << LayerMask.NameToLayer("Water");
         memoriesController.HideMemories();
     }
 
@@ -57,7 +59,16 @@ public class PlayerController : MonoBehaviour
         rotationRoot.Rotate(0, rotate *Mathf.Rad2Deg * rotationSpeed * Time.deltaTime, 0);
 
         // Translation
-        transform.Translate(rotationRoot.forward * (move * movementSpeed * Time.deltaTime));
+        Vector3 movement = rotationRoot.forward * (move * movementSpeed * Time.deltaTime);
+        Ray ray = new Ray(transform.position + (transform.up * 2) + movement, -transform.up);
+        RaycastHit hit;
+        bool hitwater = false;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, waterMask | terrainMask))
+        {
+            hitwater = hit.collider.tag == "Water";
+        }
+        if (!hitwater)
+            transform.Translate(movement);
     }
 
     public void Dig(BeachObject beachObject)
