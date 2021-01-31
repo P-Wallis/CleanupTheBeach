@@ -243,6 +243,7 @@ Transform:
   m_Children:
   - {fileID: 8907805267245975440}
   - {fileID: 2843213008178411150}
+  - {fileID: 8473116414402720777}
   m_Father: {fileID: 2843213007760443392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -277,7 +278,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2843213007227594128}
-  - {fileID: 8473116414402720777}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -313,7 +313,7 @@ MonoBehaviour:
   memoriesController: {fileID: 0}
   rotationRoot: {fileID: 2843213007227594128}
   movementSpeed: 2
-  rotationSpeed: 10.52
+  rotationSpeed: 2
   walkingSoundMaxVolume: 0.732
   walkingSoundFadeSpeed: 19.6
   foundScanner: 1
@@ -833,8 +833,8 @@ Transform:
   - {fileID: 3569755376236631708}
   - {fileID: 3001247484091238738}
   - {fileID: 6930374408293151403}
-  m_Father: {fileID: 2843213007760443392}
-  m_RootOrder: 1
+  m_Father: {fileID: 2843213007227594128}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6719565201669754325
 GameObject:
@@ -1072,33 +1072,38 @@ PrefabInstance:
       objectReference: {fileID: 7375368561243770650}
     - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
+      propertyPath: cameraPositions.Array.data[0].relativeToPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
+        type: 3}
       propertyPath: cameraPositions.Array.data[1].relativeToPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: cameraPositions.Array.data[2].relativeToPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: cameraPositions.Array.data[3].relativeToPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: cameraPositions.Array.data[4].relativeToPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: cameraPositions.Array.data[5].relativeToPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: cameraPositions.Array.data[6].relativeToPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964741, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
