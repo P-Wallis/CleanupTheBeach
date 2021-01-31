@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public CameraController cameraController;
     public MemoriesController memoriesController;
     public InstructionManager instructionManager;
+    public MenuManager menuManager;
 
     public Vector3 position { get { return transform.position; } }
 
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
         terrainMask = 1 << LayerMask.NameToLayer("Terrain");
         waterMask = 1 << LayerMask.NameToLayer("Water");
         memoriesController.HideMemories();
+        menuManager.ShowMenu(MenuID.Title);
         instructionManager.ShowInstructions(InstructionID.Movement);
     }
 
@@ -54,8 +56,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float move = isDigging ? 0 : Input.GetAxis(VERTICAL);
-        float rotate = isDigging ? 0 : Input.GetAxis(HORIZONTAL);
+        bool lockMovement = (isDigging || menuManager.IsShowingMenu);
+        float move = lockMovement ? 0 : Input.GetAxis(VERTICAL);
+        float rotate = lockMovement ? 0 : Input.GetAxis(HORIZONTAL);
         isWalking = Mathf.Abs(move) > 0.01f;
 
         // Rotation
@@ -117,6 +120,10 @@ public class PlayerController : MonoBehaviour
                     while (!Input.GetKey(KeyCode.Space))
                     {
                         yield return null;
+                    }
+                    if (memoriesController.AllMemoriesShown)
+                    {
+                        menuManager.ShowMenu(MenuID.Credits);
                     }
                     memoriesController.HideMemories();
                     AudioManager._.CrossfadeMusic(true);
