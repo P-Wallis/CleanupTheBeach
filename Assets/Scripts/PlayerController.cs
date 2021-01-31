@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Range(0, 25)] public float walkingSoundFadeSpeed = 1;
 
     public bool foundScanner = true;
+    public Transform handPosition;
 
     private AudioSource walkingSound;
     private bool isWalking = false;
@@ -26,12 +27,14 @@ public class PlayerController : MonoBehaviour
     public bool IsDigging { get { return isDigging; } }
 
     private int terrainMask = 0;
+    private int waterMask = 0;
 
     private void Start()
     {
         walkingSound = AudioManager._.PlayLoopedAudio(SoundID.Walking_On_Sand, MixerID.SFX);
         walkingSound.volume = 0;
-        terrainMask = (1 << LayerMask.NameToLayer("Terrain"));
+        terrainMask = 1 << LayerMask.NameToLayer("Terrain");
+        waterMask = 1 << LayerMask.NameToLayer("Water");
         memoriesController.HideMemories();
     }
 
@@ -49,24 +52,24 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 movement = isDigging ? Vector3.zero : new Vector3(
-            Input.GetAxis(HORIZONTAL),
-            0,
-            Input.GetAxis(VERTICAL)
-        );
-        isWalking = movement.magnitude > 0.01f;
+        float move = isDigging ? 0 : Input.GetAxis(VERTICAL);
+        float rotate = isDigging ? 0 : Input.GetAxis(HORIZONTAL);
+        isWalking = Mathf.Abs(move) > 0.01f;
 
         // Rotation
-        if (isWalking)
-        {
-            Vector3 normalizedMovement = movement.normalized;
-            float angle = Mathf.Atan2(normalizedMovement.x, normalizedMovement.z) * Mathf.Rad2Deg;
-            rotationRoot.rotation = Quaternion.Lerp(rotationRoot.rotation, Quaternion.Euler(0, angle, 0), rotationSpeed * Time.deltaTime);
-        }
+        rotationRoot.Rotate(0, rotate *Mathf.Rad2Deg * rotationSpeed * Time.deltaTime, 0);
 
         // Translation
-        movement *= movementSpeed * Time.deltaTime;
-        transform.Translate(movement);
+        Vector3 movement = rotationRoot.forward * (move * movementSpeed * Time.deltaTime);
+        Ray ray = new Ray(transform.position + (transform.up * 2) + movement, -transform.up);
+        RaycastHit hit;
+        bool hitwater = false;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, waterMask | terrainMask))
+        {
+            hitwater = hit.collider.tag == "Water";
+        }
+        if (!hitwater)
+            transform.Translate(movement);
     }
 
     public void Dig(BeachObject beachObject)
@@ -86,13 +89,19 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(AudioManager._.clipDict[SoundID.Digging].clip.length);
 
             beachObject.DigUp();
-            cameraController.TweenTo(CameraID.Examine);
-            yield return new WaitForSeconds(2f);
             if (beachObject.Data != null)
             {
+                cameraController.TweenTo(CameraID.Examine);
+                GameObject go = Instantiate(beachObject.Data.objectPrefab, handPosition.position, beachObject.Data.objectPrefab.transform.rotation);
+                Rigidbody rb = go.GetComponent<Rigidbody>();
+                rb.isKinematic = true;
                 Debug.Log("You Found " + beachObject.Data.objectName + "!");
+                yield return new WaitForSeconds(2f);
+
                 if (beachObject.Data.isValuable)
                 {
+                    go.SetActive(false);
+
                     AudioManager._.PlayOneShotSFX(SoundID.Special_Object, position);
                     cameraController.TweenTo(CameraID.Trigger_Memory);
                     yield return new WaitForSeconds(cameraController.tweenTime);
@@ -111,11 +120,19 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    StartCoroutine(CoDropObject(rb));
                     cameraController.TweenTo(CameraID.Main);
                 }
             }
 
             isDigging = false;
         }
+    }
+
+    IEnumerator CoDropObject(Rigidbody rb)
+    {
+        rb.isKinematic = false;
+        yield return new WaitForSeconds(1);
+        rb.isKinematic = true;
     }
 }

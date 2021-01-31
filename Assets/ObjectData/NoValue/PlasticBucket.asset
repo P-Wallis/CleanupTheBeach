@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b40a388126904947ac0e0f57bfe6b4f, type: 3}
   m_Name: PlasticBucket
   m_EditorClassIdentifier: 
-  objectName: Plastic Bucket (with a hole in it)
+  objectName: A Plastic Bucket (with a hole in it)
+  isValuable: 0
+  memory: 0
+  objectPrefab: {fileID: 0}

@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Can
   m_EditorClassIdentifier: 
   objectName: Can
+  isValuable: 0
+  memory: 0
+  objectPrefab: {fileID: 1351474255253158882, guid: e8242f83730824540ba0cbb535037202,
+    type: 3}
