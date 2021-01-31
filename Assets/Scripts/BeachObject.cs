@@ -22,11 +22,13 @@ public class BeachObject : MonoBehaviour
 
     public void DebugSetColor(Color color)
     {
+#if DEBUG_COLOR
         if (materialProperties == null)
             materialProperties = new MaterialPropertyBlock();
 
         materialProperties.SetColor("_BaseColor", color);
         renderer.SetPropertyBlock(materialProperties);
+#endif
     }
 
 
@@ -35,6 +37,7 @@ public class BeachObject : MonoBehaviour
         this.id = id;
         this.data = data;
         wasDugUp = false;
+        mound.transform.localPosition = new Vector3(0, Random.Range(-0.3f, 0.1f), 0);
     }
 
     public void DigUp()

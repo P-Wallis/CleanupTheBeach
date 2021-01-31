@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator CoDropObject(Rigidbody rb)
     {
         rb.isKinematic = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         rb.isKinematic = true;
     }
 }

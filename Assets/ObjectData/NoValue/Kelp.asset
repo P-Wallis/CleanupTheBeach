@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Kelp
   m_EditorClassIdentifier: 
   objectName: Kelp
+  isValuable: 0
+  memory: 0
+  objectPrefab: {fileID: 4527571054814547192, guid: 2d1d942f2222744e0875da75584f4c80,
+    type: 3}

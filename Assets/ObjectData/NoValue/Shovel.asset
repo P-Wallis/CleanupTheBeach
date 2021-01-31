@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b40a388126904947ac0e0f57bfe6b4f, type: 3}
-  m_Name: Glass
+  m_Name: Shovel
   m_EditorClassIdentifier: 
-  objectName: Broken Glass
+  objectName: A Plastic Shovel
   isValuable: 0
   memory: 0
-  objectPrefab: {fileID: 3223803310715780433, guid: 0b6bd62fbfc114de294d8ad4bcfd33fe,
+  objectPrefab: {fileID: 4696014844620219852, guid: 4a2cd270bf06b4bef87d1e6f63d8c4d5,
     type: 3}

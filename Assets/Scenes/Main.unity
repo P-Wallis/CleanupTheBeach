@@ -169,8 +169,11 @@ MonoBehaviour:
   nonValuableObjects:
   - {fileID: 11400000, guid: ee15958ef286a43b097d65ca01775fa2, type: 2}
   - {fileID: 11400000, guid: 756bd13d1fbba4220932773e286faeec, type: 2}
-  - {fileID: 11400000, guid: 8c8c5b01327c940f19e6603701062f4d, type: 2}
+  - {fileID: 11400000, guid: 40836f591d9dd40068a999017821c08c, type: 2}
+  - {fileID: 11400000, guid: f8801ffa378ce46da87114f601740292, type: 2}
+  - {fileID: 11400000, guid: ce87a7982cc3548c18b2046316d0873a, type: 2}
   - {fileID: 11400000, guid: a1927f2f056214862bba89f96cd2cacb, type: 2}
+  - {fileID: 11400000, guid: 42635a6921b87461dbfe0d08f70e3498, type: 2}
   - {fileID: 11400000, guid: 279f4caa1d2f0458bbd3b09719a0628f, type: 2}
   - {fileID: 11400000, guid: d27020d09eb294cbb98a0b75d4475713, type: 2}
   menuManager: {fileID: 328359871}
@@ -479,6 +482,12 @@ MonoBehaviour:
   title: {fileID: 1196939122}
   instructions: {fileID: 875302993}
   credits: {fileID: 1781601212}
+--- !u!20 &329433619 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 49676460141350157, guid: 94f8d928c337a40a3a93fb1c7cf8fd39,
+    type: 3}
+  m_PrefabInstance: {fileID: 2843213009008575638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &618877539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,8 +1875,8 @@ Canvas:
   m_GameObject: {fileID: 2052895660}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 329433619}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
