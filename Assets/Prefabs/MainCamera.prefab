@@ -121,3 +121,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 0}
+  tweenTime: 0.8
+  cameraPositions: []
