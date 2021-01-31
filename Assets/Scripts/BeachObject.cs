@@ -37,7 +37,7 @@ public class BeachObject : MonoBehaviour
         this.id = id;
         this.data = data;
         wasDugUp = false;
-        mound.transform.localPosition = new Vector3(0, Random.Range(-0.3f, 0.1f), 0);
+        mound.transform.localPosition = new Vector3(0, Random.Range(-0.12f, 0.05f), 0);
     }
 
     public void DigUp()
