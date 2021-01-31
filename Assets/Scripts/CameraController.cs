@@ -23,7 +23,6 @@ public class CameraController : MonoBehaviour
 
     private Vector3 offset;
     private Camera theCamera;
-    private Vector3 up;
 
     private void Awake()
     {
@@ -45,10 +44,14 @@ public class CameraController : MonoBehaviour
             cameraPositions[i].CopyDataAndDisableCamera(playerPos);
         }
 
-        up = transform.up;
+        CameraTweenData data = cameraDict[CameraID.Main];
+        theCamera.fieldOfView = data.fov;
+        transform.localPosition = data.position;
+        transform.localRotation = data.rotation;
     }
 
-    private void Update()
+
+        private void Update()
     {
         transform.parent.position = playerPos.position + offset;
 
