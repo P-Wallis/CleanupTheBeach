@@ -15,4 +15,5 @@ MonoBehaviour:
   objectName: A Plastic Bucket (with a hole in it)
   isValuable: 0
   memory: 0
-  objectPrefab: {fileID: 0}
+  objectPrefab: {fileID: 3882590123957839694, guid: 31565b130ba8649e0952c39d6eedc344,
+    type: 3}

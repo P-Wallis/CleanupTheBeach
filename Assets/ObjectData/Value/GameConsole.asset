@@ -15,5 +15,5 @@ MonoBehaviour:
   objectName: A Generic Console
   isValuable: 1
   memory: 1
-  objectPrefab: {fileID: 4844750336008103535, guid: 5bceb3c3c59d14a9b8711c981e208957,
+  objectPrefab: {fileID: 6650364371987747179, guid: 31d306a65f6fa4dfdb2033f9ac0c772e,
     type: 3}

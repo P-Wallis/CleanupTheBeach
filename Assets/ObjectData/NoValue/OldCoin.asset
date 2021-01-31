@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: OldCoin
   m_EditorClassIdentifier: 
   objectName: An Old Coin
+  isValuable: 0
+  memory: 0
+  objectPrefab: {fileID: 5344087373636317911, guid: 49f54db8256794903926459d189dde85,
+    type: 3}

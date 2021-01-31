@@ -15,5 +15,5 @@ MonoBehaviour:
   objectName: A Flip Phone
   isValuable: 1
   memory: 4
-  objectPrefab: {fileID: 4844750336008103535, guid: 5bceb3c3c59d14a9b8711c981e208957,
+  objectPrefab: {fileID: 2372990612784862256, guid: ea6c2f424f88b4bce8f09e2a31bc7839,
     type: 3}
