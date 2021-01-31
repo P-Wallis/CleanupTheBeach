@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: A Childhood Toy
   isValuable: 1
+  memory: 8

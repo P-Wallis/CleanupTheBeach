@@ -7,6 +7,7 @@ public class BeachObjectData : ScriptableObject
 {
     public string objectName;
     public bool isValuable;
+    public MemoryFlag memory = MemoryFlag.NONE;
 }
 
 /*

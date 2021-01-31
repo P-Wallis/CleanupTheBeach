@@ -42,28 +42,9 @@ public class BeachObject : MonoBehaviour
             return;
 
         wasDugUp = true;
-        StartCoroutine(Digging());
-    }
-
-    IEnumerator Digging()
-    {
-        AudioManager._.PlayOneShotSFX(SoundID.Digging, position);
-        yield return new WaitForSeconds(AudioManager._.clipDict[SoundID.Digging].clip.length);
-        DigComplete();
-    }
-
-    private void DigComplete()
-    {
         if (data != null)
         {
-            Debug.Log("You Found " + data.objectName + "!");
-            if (data.isValuable)
-            {
-                AudioManager._.PlayOneShotSFX(SoundID.Special_Object, position);
-            }
-            DebugSetColor(data.isValuable ? Color.green: Color.blue);
+            DebugSetColor(data.isValuable ? Color.green : Color.blue);
         }
     }
-
-
 }

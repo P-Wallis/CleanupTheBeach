@@ -72,13 +72,61 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private AudioSource music;
+    private AudioSource mainTheme;
+    private AudioSource memoryTheme;
     private AudioSource ambience;
 
     private void Start()
     {
-        music = PlayLoopedAudio(SoundID.Main_Theme, MixerID.Music);
+        mainTheme = PlayLoopedAudio(SoundID.Main_Theme, MixerID.Music);
+        memoryTheme = PlayLoopedAudio(SoundID.Memory_Trigger_Theme, MixerID.Music);
+        memoryTheme.Stop();
+
         ambience = PlayLoopedAudio(SoundID.Ambient_Beach, MixerID.Ambient);
+    }
+
+    Coroutine crossfade;
+    public void CrossfadeMusic(bool toMain = false)
+    {
+        if (crossfade != null)
+            StopCoroutine(crossfade);
+        crossfade = StartCoroutine(CoCrossfadeMusic(toMain));
+    }
+
+    IEnumerator CoCrossfadeMusic(bool toMain)
+    {
+        float percent = 0;
+
+        if (toMain)
+        {
+            mainTheme.Play();
+            mainTheme.volume = 0;
+        }
+        else
+        {
+            memoryTheme.Play();
+            memoryTheme.volume = 0;
+        }
+
+        while (percent < 1)
+        {
+            mainTheme.volume = Mathf.Lerp(0, 1, toMain ? percent : 1 - percent);
+            memoryTheme.volume = Mathf.Lerp(0, 1, toMain ? 1 - percent : percent);
+
+            percent += Time.deltaTime;
+            yield return null;
+        }
+
+        if (toMain)
+        {
+            memoryTheme.Stop();
+            mainTheme.volume = 1;
+        }
+        else
+        {
+            mainTheme.Stop();
+            memoryTheme.volume = 1;
+        }
     }
 
     public AudioSource PlayLoopedAudio(SoundID sound, MixerID mixer)

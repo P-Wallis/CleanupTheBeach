@@ -16,13 +16,14 @@ public enum CameraID
 public class CameraController : MonoBehaviour
 {
     public Transform playerPos;
-    //[Range(0.01f, 25f)]public float speed = 1;
+    public float playerHeadOffset = 1.8f;
     [Range(0.01f, 25f)]public float tweenTime = 1;
     public CameraTweenData[] cameraPositions = { };
     private Dictionary<CameraID, CameraTweenData> cameraDict = new Dictionary<CameraID, CameraTweenData>();
 
     private Vector3 offset;
     private Camera theCamera;
+    private Vector3 up;
 
     private void Awake()
     {
@@ -41,8 +42,10 @@ public class CameraController : MonoBehaviour
                 cameraDict.Add(id, cameraPositions[i]);
             }
 
-            cameraPositions[i].CopyDataAndDisableCamera();
+            cameraPositions[i].CopyDataAndDisableCamera(playerPos);
         }
+
+        up = transform.up;
     }
 
     private void Update()
@@ -70,7 +73,8 @@ public class CameraController : MonoBehaviour
 
     private Coroutine tween;
     private bool isTweening;
-    private AnimationCurve smoothCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
+    public AnimationCurve smoothCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
+    public AnimationCurve inAndOutCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1), new Keyframe(1, 0));
 
     public void TweenSequence(params CameraID[] cameras)
     {
@@ -98,10 +102,10 @@ public class CameraController : MonoBehaviour
             CameraTweenData data;
             float fov;
             Vector3 pos;
-            Quaternion rot;
+            Quaternion rot, realRot;
             float percent;
             float dt = 1 / tweenTime;
-            float t;
+            float t,t2;
 
             for (int i = 0; i < seq.Length; i++)
             {
@@ -111,26 +115,28 @@ public class CameraController : MonoBehaviour
                 smoothEnd = smoothCurve.Evaluate(segmentEnd);
                 data = cameraDict[seq[i]];
                 fov = theCamera.fieldOfView;
-                pos = transform.localPosition;
-                rot = transform.localRotation;
+                pos = transform.position;
+                rot = transform.rotation;
                 percent = 0;
-
 
                 while (percent < 1)
                 {
 
                     t = Mathf.InverseLerp(smoothStart, smoothEnd, smoothCurve.Evaluate(Mathf.Lerp(segmentStart, segmentEnd, percent)));
+                    t2 = inAndOutCurve.Evaluate(Mathf.Lerp(segmentStart, segmentEnd, percent));
                     theCamera.fieldOfView = Mathf.Lerp(fov, data.fov, t);
-                    transform.localPosition = Vector3.Lerp(pos, data.position, t);
-                    transform.localRotation = Quaternion.Lerp(rot, data.rotation, t);
+                    transform.position = Vector3.Lerp(pos, data.position, t);
+                    realRot = Quaternion.Lerp(rot, data.rotation, t);
+                    transform.LookAt(playerPos.position + (Vector3.up * playerHeadOffset), Vector3.up);
+                    transform.rotation = Quaternion.Lerp(realRot, transform.rotation, t2);
 
                     yield return null;
                     percent += dt * Time.deltaTime;
                 }
 
                 theCamera.fieldOfView = data.fov;
-                transform.localPosition = data.position;
-                transform.localRotation = data.rotation;
+                transform.position = data.position;
+                transform.rotation = data.rotation;
             }
         }
         isTweening = false;
@@ -143,18 +149,26 @@ public class CameraController : MonoBehaviour
         [HideInInspector]public string name;
         public CameraID id;
         public Camera camera;
-        [HideInInspector]public Vector3 position;
-        [HideInInspector]public Quaternion rotation;
+        public Vector3 position { get { return placeholder.position; } }
+        public Quaternion rotation { get { return placeholder.rotation; } }
         [HideInInspector]public float fov;
+        public bool relativeToPlayer;
+        private Transform placeholder;
 
-        public void CopyDataAndDisableCamera()
+        public void CopyDataAndDisableCamera(Transform player)
         {
             if (camera == null)
                 return;
 
-            position = camera.transform.localPosition;
-            rotation = camera.transform.localRotation;
             fov = camera.fieldOfView;
+            GameObject go = new GameObject
+            {
+                name = name.Replace('_',' ') + " Camera Target"
+            };
+            placeholder = go.transform;
+            placeholder.parent = relativeToPlayer ? player : camera.transform.parent;
+            placeholder.position = camera.transform.position;
+            placeholder.rotation = camera.transform.rotation;
             camera.gameObject.SetActive(false);
         }
     }

@@ -66,45 +66,60 @@ public class ObjectManager : MonoBehaviour
 
     private void Update()
     {
-        BeachObject newClosest = GetClosestBuriedBeachObject();
-
-        if (closestObject == null || (newClosest!=null && newClosest.ID != closestObject.ID))
+        if (player.IsDigging)
         {
-            if (closestObject != null && !closestObject.WasDugUp)
-            {
-                closestObject.DebugSetColor(Color.yellow);
-            }
-            if (newClosest != null)
-            {
-                closestObject = newClosest;
-            }
+            scannerFound.volume = 0;
+            scannerBackground.volume = 0;
         }
-
-        if (closestObject != null)
+        else
         {
-            float distance = Vector3.Distance(newClosest.position, player.position);
 
-            if (distance < playerProximityRadius)
+            BeachObject newClosest = GetClosestBuriedBeachObject();
+
+            if (closestObject == null || (newClosest != null && newClosest.ID != closestObject.ID))
             {
-                if (player.foundScanner)
+                if (closestObject != null && !closestObject.WasDugUp)
                 {
-                    scannerFound.volume = scannerMaxVolume;
-                    scannerBackground.volume = 0;
+                    closestObject.DebugSetColor(Color.yellow);
                 }
-                closestObject.DebugSetColor(Color.cyan);
-                if (Input.GetKeyDown(KeyCode.Space))
-                    closestObject.DigUp();
+                if (newClosest != null)
+                {
+                    closestObject = newClosest;
+                }
+            }
+
+            if (closestObject != null && newClosest != null)
+            {
+                float distance = Vector3.Distance(newClosest.position, player.position);
+
+                if (distance < playerProximityRadius)
+                {
+                    if (player.foundScanner)
+                    {
+                        scannerFound.volume = scannerMaxVolume;
+                        scannerBackground.volume = 0;
+                    }
+                    closestObject.DebugSetColor(Color.cyan);
+                    if (Input.GetKeyDown(KeyCode.Space))
+                        player.Dig(closestObject);
+                }
+                else
+                {
+                    float proximity = Mathf.InverseLerp(scannerMaxRadius, playerProximityRadius, distance);
+                    if (player.foundScanner)
+                    {
+                        scannerFound.volume = 0;
+                        scannerBackground.volume = Mathf.Lerp(scannerMaxVolume * 0.2f, scannerMaxVolume, proximity);
+                        scannerBackground.pitch = 0.8f + (proximity * 0.4f);
+                    }
+                    closestObject.DebugSetColor(Color.Lerp(Color.yellow, Color.gray, proximity));
+                }
             }
             else
             {
-                float proximity = Mathf.InverseLerp(scannerMaxRadius, playerProximityRadius, distance);
-                if (player.foundScanner)
-                {
-                    scannerFound.volume = 0;
-                    scannerBackground.volume = Mathf.Lerp(scannerMaxVolume*0.2f, scannerMaxVolume, proximity);
-                    scannerBackground.pitch = 0.8f + (proximity * 0.4f);
-                }
-                closestObject.DebugSetColor(Color.Lerp(Color.yellow, Color.gray, proximity));
+                scannerFound.volume = 0;
+                scannerBackground.volume = scannerMaxVolume * 0.2f;
+                scannerBackground.pitch = 0.8f;
             }
         }
     }
