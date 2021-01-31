@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     public CameraController cameraController;
     public MemoriesController memoriesController;
+    public InstructionManager instructionManager;
 
     public Vector3 position { get { return transform.position; } }
 
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         terrainMask = 1 << LayerMask.NameToLayer("Terrain");
         waterMask = 1 << LayerMask.NameToLayer("Water");
         memoriesController.HideMemories();
+        instructionManager.ShowInstructions(InstructionID.Movement);
     }
 
     private void Update()
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
         IEnumerator Digging(BeachObject beachObject)
         {
             isDigging = true;
+            instructionManager.ShowInstructions(InstructionID.NONE);
             cameraController.TweenTo(CameraID.Digging);
             AudioManager._.PlayOneShotSFX(SoundID.Digging, position);
             yield return new WaitForSeconds(AudioManager._.clipDict[SoundID.Digging].clip.length);
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
                     AudioManager._.CrossfadeMusic(false);
                     yield return new WaitForSeconds(1f);
                     cameraController.TweenTo(CameraID.Remembering);
+                    instructionManager.ShowInstructions(InstructionID.Exit_Memory);
                     yield return new WaitForSeconds(cameraController.tweenTime);
                     memoriesController.ShowNewMemory(beachObject.Data.memory);
                     while (!Input.GetKey(KeyCode.Space))
@@ -125,6 +129,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            instructionManager.ShowInstructions(InstructionID.Movement);
             isDigging = false;
         }
     }

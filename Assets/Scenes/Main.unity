@@ -905,6 +905,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 875302990}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &875302992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7763912540759519844, guid: b741e71cfcde3b14aa5ea55b5fcd438a,
+    type: 3}
+  m_PrefabInstance: {fileID: 875302990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149edfdfc9de242c29db3803e9712be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &957442624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,6 +1663,11 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2843213007760443394, guid: 94f8d928c337a40a3a93fb1c7cf8fd39,
+        type: 3}
+      propertyPath: instructionManager
+      value: 
+      objectReference: {fileID: 875302992}
     - target: {fileID: 2843213007760443394, guid: 94f8d928c337a40a3a93fb1c7cf8fd39,
         type: 3}
       propertyPath: memoriesController
