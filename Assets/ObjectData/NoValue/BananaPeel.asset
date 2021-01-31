@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b40a388126904947ac0e0f57bfe6b4f, type: 3}
   m_Name: BananaPeel
   m_EditorClassIdentifier: 
-  objectName: Banana Peel
+  objectName: A Banana Peel
+  isValuable: 0
+  memory: 0
+  objectPrefab: {fileID: 0}

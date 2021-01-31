@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b40a388126904947ac0e0f57bfe6b4f, type: 3}
-  m_Name: Can
+  m_Name: Starfish2
   m_EditorClassIdentifier: 
-  objectName: Can
+  objectName: A Sea Star
   isValuable: 0
   memory: 0
-  objectPrefab: {fileID: 1351474255253158882, guid: e8242f83730824540ba0cbb535037202,
+  objectPrefab: {fileID: 8429894778673816369, guid: 36b2304d3e0454dc8954482781824f6c,
     type: 3}

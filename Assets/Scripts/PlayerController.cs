@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Range(0, 25)] public float walkingSoundFadeSpeed = 1;
 
     public bool foundScanner = true;
+    public Transform handPosition;
 
     private AudioSource walkingSound;
     private bool isWalking = false;
@@ -51,8 +52,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float move = Input.GetAxis(VERTICAL);
-        float rotate = Input.GetAxis(HORIZONTAL);
+        float move = isDigging ? 0 : Input.GetAxis(VERTICAL);
+        float rotate = isDigging ? 0 : Input.GetAxis(HORIZONTAL);
         isWalking = Mathf.Abs(move) > 0.01f;
 
         // Rotation
@@ -88,13 +89,19 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(AudioManager._.clipDict[SoundID.Digging].clip.length);
 
             beachObject.DigUp();
-            cameraController.TweenTo(CameraID.Examine);
-            yield return new WaitForSeconds(2f);
             if (beachObject.Data != null)
             {
+                cameraController.TweenTo(CameraID.Examine);
+                GameObject go = Instantiate(beachObject.Data.objectPrefab, handPosition.position, beachObject.Data.objectPrefab.transform.rotation);
+                Rigidbody rb = go.GetComponent<Rigidbody>();
+                rb.isKinematic = true;
+                yield return new WaitForSeconds(2f);
+
                 Debug.Log("You Found " + beachObject.Data.objectName + "!");
                 if (beachObject.Data.isValuable)
                 {
+                    go.SetActive(false);
+
                     AudioManager._.PlayOneShotSFX(SoundID.Special_Object, position);
                     cameraController.TweenTo(CameraID.Trigger_Memory);
                     yield return new WaitForSeconds(cameraController.tweenTime);
@@ -113,11 +120,19 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    StartCoroutine(CoDropObject(rb));
                     cameraController.TweenTo(CameraID.Main);
                 }
             }
 
             isDigging = false;
         }
+    }
+
+    IEnumerator CoDropObject(Rigidbody rb)
+    {
+        rb.isKinematic = false;
+        yield return new WaitForSeconds(1);
+        rb.isKinematic = true;
     }
 }
