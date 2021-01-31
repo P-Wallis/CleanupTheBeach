@@ -42,9 +42,11 @@ public class BeachObject : MonoBehaviour
             return;
 
         wasDugUp = true;
-        if (data != null)
+        if (data != null && data.isValuable)
         {
-            DebugSetColor(data.isValuable ? Color.green : Color.blue);
+            gameObject.SetActive(false);
         }
+        else
+            DebugSetColor(Color.blue);
     }
 }
