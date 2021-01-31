@@ -19,15 +19,25 @@ public class PlayerController : MonoBehaviour
     private AudioSource walkingSound;
     private bool isWalking = false;
 
+    private int terrainMask = 0;
+
     private void Start()
     {
         walkingSound = AudioManager._.PlayLoopedAudio(SoundID.Walking_On_Sand, MixerID.SFX);
         walkingSound.volume = 0;
+        terrainMask = (1 << LayerMask.NameToLayer("Terrain"));
     }
 
     private void Update()
     {
         walkingSound.volume = Mathf.Lerp(walkingSound.volume, (isWalking ? walkingSoundMaxVolume : 0), walkingSoundFadeSpeed * Time.deltaTime);
+
+        Ray ray = new Ray(transform.position + (transform.up*2), -transform.up);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainMask))
+        {
+            rotationRoot.position = hit.point;
+        }
     }
 
     private void FixedUpdate()

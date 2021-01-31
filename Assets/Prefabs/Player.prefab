@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2843213007227594128}
   m_Layer: 0
-  m_Name: Model
+  m_Name: RotationRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,6 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8907805267245975440}
+  - {fileID: 2843213008178411150}
   m_Father: {fileID: 2843213007760443392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62,7 +63,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2843213007227594128}
-  - {fileID: 2843213008178411150}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,6 +99,7 @@ MonoBehaviour:
   rotationSpeed: 10.52
   walkingSoundMaxVolume: 0.5
   walkingSoundFadeSpeed: 19.6
+  foundScanner: 1
 --- !u!81 &7717723405641064200
 AudioListener:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2843213007760443392}
+  m_Father: {fileID: 2843213007227594128}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2843213008178411137
