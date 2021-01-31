@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -156,11 +156,11 @@ MonoBehaviour:
   beachObjectPrefab: {fileID: 5768197994423863069, guid: 77c064cb14f144ff9af4d0ff6882204f,
     type: 3}
   player: {fileID: 1257049236}
-  objectSpawnNumber: 5
-  scatterRadius: 2.26
+  objectSpawnNumber: 20
+  scatterRadius: 15
   playerProximityRadius: 1
   scannerMaxRadius: 5
-  scannerMaxVolume: 0.35
+  scannerMaxVolume: 0.197
   valuableObjects:
   - {fileID: 11400000, guid: e7a192cfca82344ecb5570dd1a0c8924, type: 2}
   - {fileID: 11400000, guid: 40a1d66dae6ef4477b1117da19cfbe5f, type: 2}
