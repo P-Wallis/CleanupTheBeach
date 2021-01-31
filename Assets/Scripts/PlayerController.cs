@@ -49,24 +49,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 movement = isDigging ? Vector3.zero : new Vector3(
-            Input.GetAxis(HORIZONTAL),
-            0,
-            Input.GetAxis(VERTICAL)
-        );
-        isWalking = movement.magnitude > 0.01f;
+        float move = Input.GetAxis(VERTICAL);
+        float rotate = Input.GetAxis(HORIZONTAL);
+        isWalking = Mathf.Abs(move) > 0.01f;
 
         // Rotation
-        if (isWalking)
-        {
-            Vector3 normalizedMovement = movement.normalized;
-            float angle = Mathf.Atan2(normalizedMovement.x, normalizedMovement.z) * Mathf.Rad2Deg;
-            rotationRoot.rotation = Quaternion.Lerp(rotationRoot.rotation, Quaternion.Euler(0, angle, 0), rotationSpeed * Time.deltaTime);
-        }
+        rotationRoot.Rotate(0, rotate *Mathf.Rad2Deg * rotationSpeed * Time.deltaTime, 0);
 
         // Translation
-        movement *= movementSpeed * Time.deltaTime;
-        transform.Translate(movement);
+        transform.Translate(rotationRoot.forward * (move * movementSpeed * Time.deltaTime));
     }
 
     public void Dig(BeachObject beachObject)

@@ -115,8 +115,8 @@ public class CameraController : MonoBehaviour
                 smoothEnd = smoothCurve.Evaluate(segmentEnd);
                 data = cameraDict[seq[i]];
                 fov = theCamera.fieldOfView;
-                pos = transform.position;
-                rot = transform.rotation;
+                pos = transform.localPosition;
+                rot = transform.localRotation;
                 percent = 0;
 
                 while (percent < 1)
@@ -125,18 +125,18 @@ public class CameraController : MonoBehaviour
                     t = Mathf.InverseLerp(smoothStart, smoothEnd, smoothCurve.Evaluate(Mathf.Lerp(segmentStart, segmentEnd, percent)));
                     t2 = inAndOutCurve.Evaluate(Mathf.Lerp(segmentStart, segmentEnd, percent));
                     theCamera.fieldOfView = Mathf.Lerp(fov, data.fov, t);
-                    transform.position = Vector3.Lerp(pos, data.position, t);
+                    transform.localPosition = Vector3.Lerp(pos, data.position, t);
                     realRot = Quaternion.Lerp(rot, data.rotation, t);
                     transform.LookAt(playerPos.position + (Vector3.up * playerHeadOffset), Vector3.up);
-                    transform.rotation = Quaternion.Lerp(realRot, transform.rotation, t2);
+                    transform.localRotation = Quaternion.Lerp(realRot, transform.localRotation, t2);
 
                     yield return null;
                     percent += dt * Time.deltaTime;
                 }
 
                 theCamera.fieldOfView = data.fov;
-                transform.position = data.position;
-                transform.rotation = data.rotation;
+                transform.localPosition = data.position;
+                transform.localRotation = data.rotation;
             }
         }
         isTweening = false;
@@ -149,26 +149,17 @@ public class CameraController : MonoBehaviour
         [HideInInspector]public string name;
         public CameraID id;
         public Camera camera;
-        public Vector3 position { get { return placeholder.position; } }
-        public Quaternion rotation { get { return placeholder.rotation; } }
+        public Vector3 position;
+        public Quaternion rotation;
         [HideInInspector]public float fov;
-        public bool relativeToPlayer;
-        private Transform placeholder;
 
         public void CopyDataAndDisableCamera(Transform player)
         {
             if (camera == null)
                 return;
-
+            position = camera.transform.localPosition;
+            rotation = camera.transform.localRotation;
             fov = camera.fieldOfView;
-            GameObject go = new GameObject
-            {
-                name = name.Replace('_',' ') + " Camera Target"
-            };
-            placeholder = go.transform;
-            placeholder.parent = relativeToPlayer ? player : camera.transform.parent;
-            placeholder.position = camera.transform.position;
-            placeholder.rotation = camera.transform.rotation;
             camera.gameObject.SetActive(false);
         }
     }
