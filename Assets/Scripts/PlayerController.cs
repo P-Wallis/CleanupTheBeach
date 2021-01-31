@@ -95,9 +95,9 @@ public class PlayerController : MonoBehaviour
                 GameObject go = Instantiate(beachObject.Data.objectPrefab, handPosition.position, beachObject.Data.objectPrefab.transform.rotation);
                 Rigidbody rb = go.GetComponent<Rigidbody>();
                 rb.isKinematic = true;
+                Debug.Log("You Found " + beachObject.Data.objectName + "!");
                 yield return new WaitForSeconds(2f);
 
-                Debug.Log("You Found " + beachObject.Data.objectName + "!");
                 if (beachObject.Data.isValuable)
                 {
                     go.SetActive(false);
