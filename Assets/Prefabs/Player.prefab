@@ -312,8 +312,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 49676460141350154}
   memoriesController: {fileID: 0}
+  instructionManager: {fileID: 0}
+  menuManager: {fileID: 0}
   rotationRoot: {fileID: 2843213007227594128}
-  movementSpeed: 2
+  movementSpeed: 10
   rotationSpeed: 2
   walkingSoundMaxVolume: 0.732
   walkingSoundFadeSpeed: 19.6
