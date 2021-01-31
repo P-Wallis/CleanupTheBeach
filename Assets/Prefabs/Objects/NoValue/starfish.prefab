@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4942232366892373076}
   - component: {fileID: 7165967455081078942}
   - component: {fileID: 5296855119639307842}
-  - component: {fileID: 2563561243864676497}
+  - component: {fileID: 2272836825564691262}
   m_Layer: 0
   m_Name: starfish
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8679101818794508619}
   m_LocalRotation: {x: -0.6761508, y: -0.02698093, z: 0.02935652, w: 0.73568356}
   m_LocalPosition: {x: 148.51, y: 84.599884, z: 186.07}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -99,7 +99,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2563561243864676497
+--- !u!65 &2272836825564691262
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,5 +110,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0040672286, y: 0.0040605175, z: 0.0013258499}
-  m_Center: {x: -0.00027320787, y: 0.00012060329, z: 2.2874232e-19}
+  m_Size: {x: 1.040557, y: 0.26517007, z: 1.0914608}
+  m_Center: {x: -0.051573515, y: -0.0000000062603975, z: 0.031935155}

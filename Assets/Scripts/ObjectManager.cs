@@ -7,7 +7,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject beachObjectPrefab;
     public PlayerController player;
     public int objectSpawnNumber = 10;
-    [Range(1,20)]public float scatterRadius = 10;
+    [Range(1,300)]public float scatterRadius = 10;
     [Range(0, 5)] public float playerProximityRadius = 1;
     [Range(0, 20)] public float scannerMaxRadius = 5;
     [Range(0, 1)] public float scannerMaxVolume = 0.5f;
@@ -20,14 +20,38 @@ public class ObjectManager : MonoBehaviour
 
     private AudioSource scannerBackground, scannerFound;
 
+    List<RaycastHit> hits = new List<RaycastHit>();
+    List<Ray> rays = new List<Ray>();
+
     private void Start()
     {
         BeachObjectData data;
+
+        int terrainMask = 1 << LayerMask.NameToLayer("Terrain");
+        int waterMask = 1 << LayerMask.NameToLayer("Water");
+
+
         for (int i = 0; i < objectSpawnNumber; i++)
         {
             GameObject go = Instantiate(beachObjectPrefab, transform);
+            bool posBad = true;
             Vector2 pos = Random.insideUnitCircle * scatterRadius;
-            go.transform.localPosition = new Vector3(pos.x, 0, pos.y);
+            Vector3 rayPos = Vector3.zero;
+            while(posBad)
+            {
+                rayPos = new Vector3(pos.x, 2, pos.y) + transform.position;
+                Ray ray = new Ray(new Vector3(pos.x, 2, pos.y) + transform.position, -transform.up);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, waterMask | terrainMask))
+                {
+                    if (hit.collider.tag != "Water")
+                        posBad = false;
+                    rayPos = hit.point;
+                }
+                pos = Random.insideUnitCircle * scatterRadius;
+            }
+
+            go.transform.position = rayPos;
 
             if (i < valuableObjects.Length)
                 data = valuableObjects[i];
@@ -45,6 +69,14 @@ public class ObjectManager : MonoBehaviour
         scannerFound.volume = 0;
     }
 
+    private void OnDrawGizmos()
+    {
+        foreach (RaycastHit hit in hits)
+        {
+            Gizmos.DrawSphere(hit.point, 5);
+        }
+    }
+
     private BeachObject GetClosestBuriedBeachObject()
     {
         BeachObject closest = null;
@@ -54,7 +86,7 @@ public class ObjectManager : MonoBehaviour
             if (beachObjects[i].WasDugUp) // Skip dug up items
                 continue;
 
-            float currentDist = Vector3.SqrMagnitude(beachObjects[i].position - player.position);
+            float currentDist = Vector2.SqrMagnitude(new Vector2(beachObjects[i].position.x- player.position.x, beachObjects[i].position.z - player.position.z));
             if (currentDist < dist)
             {
                 dist = currentDist;
@@ -91,7 +123,7 @@ public class ObjectManager : MonoBehaviour
 
             if (closestObject != null && newClosest != null)
             {
-                float distance = Vector3.Distance(newClosest.position, player.position);
+                float distance = Vector2.Distance(new Vector2(newClosest.position.x, newClosest.position.z), new Vector2(player.position.x, player.position.z));
 
                 if (distance < playerProximityRadius)
                 {
