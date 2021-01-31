@@ -157,8 +157,10 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 1257049236}
   objectSpawnNumber: 30
-  scatterRadius: 10
+  scatterRadius: 20
   playerProximityRadius: 1
+  scannerMaxRadius: 5
+  scannerMaxVolume: 0.35
   valuableObjects:
   - {fileID: 11400000, guid: 8c9c86e3f4e4b432aa45fd5c8711645d, type: 2}
   - {fileID: 11400000, guid: e7a192cfca82344ecb5570dd1a0c8924, type: 2}
@@ -560,7 +562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1979308327
 Transform:
   m_ObjectHideFlags: 0

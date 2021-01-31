@@ -11,7 +11,10 @@ public enum SoundID
     Pop,
     Scanner_Found,
     Scanner,
-    Walking_On_Sand
+    Walking_On_Sand,
+    Memory_Trigger_Theme,
+    Grab_Object,
+    Special_Object
 }
 
 public enum MixerID
@@ -24,7 +27,7 @@ public enum MixerID
 
 public class AudioManager : MonoBehaviour
 {
-    static AudioManager _;
+    public static AudioManager _;
 
     [System.Serializable]
     public class AudioClipData
@@ -38,7 +41,7 @@ public class AudioManager : MonoBehaviour
     public AudioClipData[] clips = { };
     public int oneShotPoolSize = 5;
 
-    private Dictionary<SoundID, AudioClipData> clipDict = new Dictionary<SoundID, AudioClipData>();
+    public Dictionary<SoundID, AudioClipData> clipDict = new Dictionary<SoundID, AudioClipData>();
     private Queue<AudioSource> oneShotPool = new Queue<AudioSource>();
 
     private void Awake()
@@ -97,7 +100,7 @@ public class AudioManager : MonoBehaviour
         if (oneShotPool.Count < oneShotPoolSize)
         {
             source = MakeNewSource(position);
-            source.spatialBlend = 1;
+            source.spatialBlend = 0;
             source.dopplerLevel = 0;
             source.loop = false;
         }
@@ -111,7 +114,7 @@ public class AudioManager : MonoBehaviour
         {
             source.pitch = Random.Range(0.9f, 1.15f);
         }
-
+        source.gameObject.name = "(OneShot) ";
         SetUpSound(source, sound, MixerID.SFX);
         source.Play();
         oneShotPool.Enqueue(source);
@@ -123,6 +126,7 @@ public class AudioManager : MonoBehaviour
         if (data == null)
             return;
 
+        source.gameObject.name += data.name;
         source.outputAudioMixerGroup = mixers[(int)mixer];
         source.clip = data.clip;
     }
@@ -130,6 +134,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource MakeNewSource(Vector3 position)
     {
         GameObject go = new GameObject();
+        go.name = "";
         go.transform.parent = transform;
         go.transform.position = position;
         return go.AddComponent<AudioSource>();

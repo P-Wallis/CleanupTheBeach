@@ -11,7 +11,24 @@ public class PlayerController : MonoBehaviour
     public Transform rotationRoot;
     [Range(0,15)]public float movementSpeed = 1;
     [Range(0, 15)] public float rotationSpeed = 1;
+    [Range(0,1)]public float walkingSoundMaxVolume = 1;
+    [Range(0, 25)] public float walkingSoundFadeSpeed = 1;
 
+    public bool foundScanner = true;
+
+    private AudioSource walkingSound;
+    private bool isWalking = false;
+
+    private void Start()
+    {
+        walkingSound = AudioManager._.PlayLoopedAudio(SoundID.Walking_On_Sand, MixerID.SFX);
+        walkingSound.volume = 0;
+    }
+
+    private void Update()
+    {
+        walkingSound.volume = Mathf.Lerp(walkingSound.volume, (isWalking ? walkingSoundMaxVolume : 0), walkingSoundFadeSpeed * Time.deltaTime);
+    }
 
     private void FixedUpdate()
     {
@@ -20,9 +37,10 @@ public class PlayerController : MonoBehaviour
             0,
             Input.GetAxis(VERTICAL)
         );
+        isWalking = movement.magnitude > 0.01f;
 
         // Rotation
-        if (movement.magnitude > 0.01f)
+        if (isWalking)
         {
             Vector3 normalizedMovement = movement.normalized;
             float angle = Mathf.Atan2(normalizedMovement.x, normalizedMovement.z) * Mathf.Rad2Deg;

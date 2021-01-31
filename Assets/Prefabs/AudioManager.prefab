@@ -52,12 +52,18 @@ MonoBehaviour:
   - name: Main Theme
     id: 0
     clip: {fileID: 8300000, guid: b2a30b96bd7cbc540b0fc075b5ab651b, type: 3}
+  - name: Memory Trigger Theme
+    id: 7
+    clip: {fileID: 8300000, guid: a4be7fd02efc60745b50cf979d092db6, type: 3}
   - name: Ambient Beach
     id: 1
     clip: {fileID: 8300000, guid: 5789a083481ac214da87d31f320b1a19, type: 3}
   - name: Digging
     id: 2
     clip: {fileID: 8300000, guid: dab43a2bbedd92d42af720ff7fb51da2, type: 3}
+  - name: Grab Object
+    id: 8
+    clip: {fileID: 8300000, guid: c63dea46dca09f343aeae25dbb2870af, type: 3}
   - name: Pop
     id: 3
     clip: {fileID: 8300000, guid: 56ff0e6d2a070a544975c417cafac364, type: 3}
@@ -67,6 +73,10 @@ MonoBehaviour:
   - name: Scanner
     id: 5
     clip: {fileID: 8300000, guid: fa45e5d250ecfc240888649223f69edb, type: 3}
+  - name: Special Object
+    id: 9
+    clip: {fileID: 8300000, guid: 48f0cfe56bd70df46aed9713937257b0, type: 3}
   - name: Walking On Sand
     id: 6
     clip: {fileID: 8300000, guid: ec2f55f7cbfa0254aae96f2879d3db37, type: 3}
+  oneShotPoolSize: 5
