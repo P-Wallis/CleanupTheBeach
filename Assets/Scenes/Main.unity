@@ -156,8 +156,8 @@ MonoBehaviour:
   beachObjectPrefab: {fileID: 5768197994423863069, guid: 77c064cb14f144ff9af4d0ff6882204f,
     type: 3}
   player: {fileID: 1257049236}
-  objectSpawnNumber: 30
-  scatterRadius: 15
+  objectSpawnNumber: 50
+  scatterRadius: 100
   playerProximityRadius: 1
   scannerMaxRadius: 5
   scannerMaxVolume: 0.197
@@ -2042,7 +2042,7 @@ PrefabInstance:
     - target: {fileID: 2843213007760443394, guid: 94f8d928c337a40a3a93fb1c7cf8fd39,
         type: 3}
       propertyPath: movementSpeed
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2843213007760443394, guid: 94f8d928c337a40a3a93fb1c7cf8fd39,
         type: 3}
