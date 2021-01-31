@@ -22,6 +22,7 @@ public class MemoriesController : MonoBehaviour
     public GameObject memoriesFull;
 
     private uint memoryFlags = 0;
+    public bool AllMemoriesShown { get { return IsFlagUp(memoryFlags, MemoryFlag.ALL); } }
 
     public void ShowNewMemory(MemoryFlag memory)
     {

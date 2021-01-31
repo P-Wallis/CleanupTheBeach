@@ -13,6 +13,7 @@ public class ObjectManager : MonoBehaviour
     [Range(0, 1)] public float scannerMaxVolume = 0.5f;
     public BeachObjectData[] valuableObjects;
     public BeachObjectData[] nonValuableObjects;
+    public MenuManager menuManager;
 
     private List<BeachObject> beachObjects = new List<BeachObject>();
     private BeachObject closestObject = null;
@@ -66,7 +67,7 @@ public class ObjectManager : MonoBehaviour
 
     private void Update()
     {
-        if (player.IsDigging)
+        if (player.IsDigging || menuManager.IsShowingMenu)
         {
             scannerFound.volume = 0;
             scannerBackground.volume = 0;
