@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public MemoriesController memoriesController;
     public InstructionManager instructionManager;
     public MenuManager menuManager;
+    public Animator animator;
+    public GameObject scanner;
 
     public Vector3 position { get { return transform.position; } }
 
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
         float move = lockMovement ? 0 : Input.GetAxis(VERTICAL);
         float rotate = lockMovement ? 0 : Input.GetAxis(HORIZONTAL);
         isWalking = Mathf.Abs(move) > 0.01f;
+        animator.SetFloat("Speed", move);
 
         // Rotation
         rotationRoot.Rotate(0, rotate *Mathf.Rad2Deg * rotationSpeed * Time.deltaTime, 0);
@@ -89,6 +92,8 @@ public class PlayerController : MonoBehaviour
         IEnumerator Digging(BeachObject beachObject)
         {
             isDigging = true;
+            animator.SetBool("Digging", true);
+            scanner.SetActive(false);
             instructionManager.ShowInstructions(InstructionID.NONE);
             cameraController.TweenTo(CameraID.Digging);
             AudioManager._.PlayOneShotSFX(SoundID.Digging, position);
@@ -98,6 +103,7 @@ public class PlayerController : MonoBehaviour
             if (beachObject.Data != null)
             {
                 cameraController.TweenTo(CameraID.Examine);
+                animator.SetBool("Digging", false);
                 GameObject go = Instantiate(beachObject.Data.objectPrefab, handPosition.position, beachObject.Data.objectPrefab.transform.rotation);
                 Rigidbody rb = go.GetComponent<Rigidbody>();
                 rb.isKinematic = true;
@@ -137,6 +143,7 @@ public class PlayerController : MonoBehaviour
             }
 
             instructionManager.ShowInstructions(InstructionID.Movement);
+            scanner.SetActive(true);
             isDigging = false;
         }
     }
