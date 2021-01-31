@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b40a388126904947ac0e0f57bfe6b4f, type: 3}
-  m_Name: Can
+  m_Name: Bottle
   m_EditorClassIdentifier: 
-  objectName: Can
+  objectName: An Empty Bottle
   isValuable: 0
   memory: 0
-  objectPrefab: {fileID: 1351474255253158882, guid: e8242f83730824540ba0cbb535037202,
+  objectPrefab: {fileID: 3223803310715780433, guid: 0b6bd62fbfc114de294d8ad4bcfd33fe,
     type: 3}

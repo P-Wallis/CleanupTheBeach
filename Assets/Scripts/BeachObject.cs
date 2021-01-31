@@ -18,6 +18,7 @@ public class BeachObject : MonoBehaviour
     private BeachObjectData data;
     public BeachObjectData Data { get { return data; } }
 
+    public GameObject mound;
 
     public void DebugSetColor(Color color)
     {
@@ -41,12 +42,12 @@ public class BeachObject : MonoBehaviour
         if (wasDugUp)
             return;
 
+        mound.SetActive(false);
+
         wasDugUp = true;
         if (data != null && data.isValuable)
         {
             gameObject.SetActive(false);
         }
-        else
-            DebugSetColor(Color.blue);
     }
 }

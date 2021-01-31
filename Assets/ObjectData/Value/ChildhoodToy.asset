@@ -15,3 +15,5 @@ MonoBehaviour:
   objectName: A Childhood Toy
   isValuable: 1
   memory: 8
+  objectPrefab: {fileID: 4844750336008103535, guid: 5bceb3c3c59d14a9b8711c981e208957,
+    type: 3}

@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Glass
   m_EditorClassIdentifier: 
   objectName: Broken Glass
+  isValuable: 0
+  memory: 0
+  objectPrefab: {fileID: 3223803310715780433, guid: 0b6bd62fbfc114de294d8ad4bcfd33fe,
+    type: 3}
