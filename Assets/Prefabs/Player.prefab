@@ -309,6 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c5e3ddc5b984db2911f29c4df75a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraController: {fileID: 49676460141350154}
+  memoriesController: {fileID: 0}
   rotationRoot: {fileID: 2843213007227594128}
   movementSpeed: 2
   rotationSpeed: 10.52
@@ -860,7 +862,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6719565201669754325}
   m_LocalRotation: {x: -0, y: 0.9893455, z: 0.14558719, w: 0}
-  m_LocalPosition: {x: 0, y: 1.26, z: 1.74}
+  m_LocalPosition: {x: 0, y: 1.31, z: 1.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8473116414402720777}
@@ -1068,6 +1070,36 @@ PrefabInstance:
       propertyPath: cameraPositions.Array.data[6].camera
       value: 
       objectReference: {fileID: 7375368561243770650}
+    - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
+        type: 3}
+      propertyPath: cameraPositions.Array.data[1].relativeToPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
+        type: 3}
+      propertyPath: cameraPositions.Array.data[2].relativeToPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
+        type: 3}
+      propertyPath: cameraPositions.Array.data[3].relativeToPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
+        type: 3}
+      propertyPath: cameraPositions.Array.data[4].relativeToPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
+        type: 3}
+      propertyPath: cameraPositions.Array.data[5].relativeToPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
+        type: 3}
+      propertyPath: cameraPositions.Array.data[6].relativeToPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964741, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: m_RootOrder
@@ -1130,6 +1162,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d243acebabee74ee8a75cf314eb3acd6, type: 3}
+--- !u!114 &49676460141350154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1127863878938348745}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f8818e125203497183facafb0a4fcf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &49676460141350156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1087203981629964741, guid: d243acebabee74ee8a75cf314eb3acd6,
