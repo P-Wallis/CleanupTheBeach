@@ -77,6 +77,7 @@ public class ObjectReplacer : MonoBehaviour
 
     public void RemovePrefix()
     {
+#if UNITY_EDITOR 
         Undo.SetCurrentGroupName("Rename Scene Objects");
         int group = Undo.GetCurrentGroup();
 
@@ -91,6 +92,7 @@ public class ObjectReplacer : MonoBehaviour
         }
 
         Undo.CollapseUndoOperations(group);
+#endif
     }
 }
 
