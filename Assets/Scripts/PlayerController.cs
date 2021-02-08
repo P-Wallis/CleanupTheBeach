@@ -152,6 +152,9 @@ public class PlayerController : MonoBehaviour
     {
         rb.isKinematic = false;
         yield return new WaitForSeconds(2);
-        rb.isKinematic = true;
+        //rb.isKinematic = true;
+        Collider col = rb.gameObject.GetComponent<Collider>();
+        Destroy(col);
+        Destroy(rb);
     }
 }

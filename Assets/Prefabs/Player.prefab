@@ -318,7 +318,7 @@ MonoBehaviour:
   animator: {fileID: 6079207978553163483}
   scanner: {fileID: 6075333543666683428}
   rotationRoot: {fileID: 2843213007227594128}
-  movementSpeed: 10
+  movementSpeed: 8
   rotationSpeed: 2
   walkingSoundMaxVolume: 0.732
   walkingSoundFadeSpeed: 19.6
@@ -402,13 +402,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2852837496879269290}
-  m_LocalRotation: {x: 0.4128924, y: -0, z: -0, w: 0.91077983}
-  m_LocalPosition: {x: 0, y: 3.97, z: -2.25}
+  m_LocalRotation: {x: 0.24476656, y: -0, z: -0, w: 0.9695821}
+  m_LocalPosition: {x: 0, y: 3.29, z: -2.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8473116414402720777}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 48.773, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.336, y: 0, z: 0}
 --- !u!20 &2852837496879269288
 Camera:
   m_ObjectHideFlags: 0
@@ -1200,6 +1200,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8473116414402720777}
     m_Modifications:
+    - target: {fileID: 1087203981629964738, guid: d243acebabee74ee8a75cf314eb3acd6,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1087203981629964739, guid: d243acebabee74ee8a75cf314eb3acd6,
         type: 3}
       propertyPath: speed
