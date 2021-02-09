@@ -138,7 +138,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 else
                 {
-                    float proximity = Mathf.InverseLerp(scannerMaxRadius, playerProximityRadius, distance);
+                    float proximity = Mathf.InverseLerp(scannerMaxRadius * player.movementSpeed, playerProximityRadius, distance);
                     if (player.foundScanner)
                     {
                         scannerFound.volume = 0;
